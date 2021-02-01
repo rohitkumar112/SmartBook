@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center"
+
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".CancelTicket">
+    <TextView
+        android:id="@+id/textView8"
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="Application Exit Dialog"
+        android:textColor="#fff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:textColor="@color/black"
+
+        android:padding="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:gravity="center"
+
+        android:text="Are You Sure You Want To cancel the ticket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:padding="@dimen/_20sdp"
+        android:paddingLeft="@dimen/dialog_padding_left_right"
+        android:paddingRight="@dimen/dialog_padding_left_right"
+        android:paddingTop="10dp"
+        android:weightSum="1"
+        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancel_ticket"
+            style="@style/normal_text_size"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@drawable/ic_rectangle_4_copy_2"
+            android:text="Yes"
+            android:textColor="@color/white"
+            />
+
+        <Button
+            android:id="@+id/no"
+            android:backgroundTint="@color/black"
+            style="@style/normal_text_size"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+
+            android:layout_height="@dimen/_35sdp"
+            android:background="@drawable/ic_rectangle_4_copy_2"
+            android:text="No"
+
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

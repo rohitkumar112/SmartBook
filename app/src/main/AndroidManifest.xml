@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.smartbook">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.LoginActivity"></activity>
+        <activity android:name=".allCancelTicket"></activity>
+        <activity android:name=".CheckAllBookings" />
+        <activity android:name=".CalculateFare" />
+        <activity android:name=".BookTicket" />
+        <activity android:name=".NavigationDrawer" />
+        <activity android:name=".CancelTicket" />
+        <activity android:name=".Activities.MapsActivity" />
+        <activity android:name=".Activities.Registration" />
+        <activity android:name=".Activities.LoginActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

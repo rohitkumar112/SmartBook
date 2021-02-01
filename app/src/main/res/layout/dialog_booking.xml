@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
+    android:id="@+id/whole_layout"
     android:layout_height="match_parent"
     android:padding="@dimen/whole_layout_padding"
     android:background="@color/white"
@@ -29,7 +29,7 @@
             android:textSize="@dimen/_20sdp"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:text="Login Page"
+            android:text="Route"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -58,17 +58,17 @@
 
     <TextView
         android:textColor="@color/black"
-        android:text="Phone Number"
+        android:text="Departure"
         android:textSize="@dimen/_25sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/phone_number"
-        android:hint="Enter Phone Number"
+    <TextView
+        android:id="@+id/departure"
+        android:hint="Departure"
         android:textColorHint="@color/gray"
         android:layout_width="match_parent"
         android:maxLength="11"
-        android:inputType="phone"
+
         android:textColor="@color/black"
         android:layout_height="wrap_content"/>
     <TextView
@@ -80,16 +80,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
-        android:text="Password"
+        android:text="Arrival"
         android:textColor="@color/black"
         android:textSize="@dimen/_25sdp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/password"
-        android:hint="Enter Password"
+    <TextView
+        android:id="@+id/arrival"
+        android:hint="Arrival"
         android:textColor="@color/black"
-        android:inputType="textPassword"
         android:textColorHint="@color/gray"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -101,6 +100,33 @@
         android:textSize="@dimen/_25sdp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <TextView
+        android:text="Total Fare"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_25sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/total_fare"
+        android:hint="Total fare"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:text="Date Of Booking"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_25sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/booking_date"
+        android:hint="Total fare"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </LinearLayout>
     <LinearLayout
         android:layout_marginTop="@dimen/_10sdp"
@@ -117,19 +143,19 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/login"
+            android:id="@+id/book"
             style="@style/normal_text_size"
             android:layout_weight="0.5"
             android:layout_width="0dp"
             android:layout_marginRight="@dimen/_10sdp"
             android:layout_height="@dimen/_35sdp"
             android:background="@drawable/ic_rectangle_4_copy_2"
-            android:text="Login"
+            android:text="Book Now"
             android:textColor="@color/white"
             />
 
         <Button
-            android:id="@+id/register"
+            android:id="@+id/cancel"
             android:backgroundTint="@color/black"
             style="@style/normal_text_size"
             android:layout_weight="0.5"
@@ -137,7 +163,7 @@
 
             android:layout_height="@dimen/_35sdp"
             android:background="@drawable/ic_rectangle_4_copy_2"
-            android:text="Register"
+            android:text="Cancel"
 
             android:textColor="@color/white"
             />

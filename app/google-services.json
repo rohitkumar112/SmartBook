@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "424662616066",
+    "project_id": "smartapp-ea207",
+    "storage_bucket": "smartapp-ea207.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:424662616066:android:7141e9c9fc75c52a2b3f1b",
+        "android_client_info": {
+          "package_name": "com.example.smartbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "424662616066-l8to7n1c2jametgkhp5d722i794n7sf6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.smartbook",
+            "certificate_hash": "eef5533468f5f99076f9bcae76b7a580f991f93d"
+          }
+        },
+        {
+          "client_id": "424662616066-u4ibrusjnboak4l267th5oabq5fljosp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkU5f38rcWtpk5x-Dm5ES2vWILV9wizWs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "424662616066-u4ibrusjnboak4l267th5oabq5fljosp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

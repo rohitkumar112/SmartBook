@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="_10sdp">10.00dp</dimen>
+    <dimen name="_20sdp">20.00dp</dimen>
+    <dimen name="_35sdp">35.00dp</dimen>
+    <dimen name="whole_layout_padding">20.00dp</dimen>
+    <dimen name="_25sdp">25.00dp</dimen>
+</resources>
