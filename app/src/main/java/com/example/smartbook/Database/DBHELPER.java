@@ -3,6 +3,7 @@ package com.example.smartbook.Database;
 import android.app.DownloadManager;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -13,6 +14,9 @@ import com.example.smartbook.Model.BookingModel;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.smartbook.Activities.LoginActivity.MyPREFERENCES;
+import static com.example.smartbook.Activities.LoginActivity.sharedPreferences;
 
 public class DBHELPER extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "smartBook.db";
@@ -67,7 +71,7 @@ public class DBHELPER extends SQLiteOpenHelper {
 //        sqLiteDatabase.execSQL("create table bookings" +
 //                "(booking_id integer primary key AUTOINCREMENT, medium_id text,city_id text,price text)");
         sqLiteDatabase.execSQL("Create Table bookings" +
-                "(booking_id integer primary key AUTOINCREMENT, medium_id integer,departure text,arrival text,price text,booking_date text,is_deleted integer)");
+                "(booking_id integer primary key AUTOINCREMENT, medium_id integer,departure text,arrival text,price text,booking_date text,is_deleted integer,phone_number text)");
         sqLiteDatabase.execSQL("Create Table city_mapping" +
                 "(city_mapping_id integer primary key AUTOINCREMENT, departure text,arrival text,total_fare text,medium_id int)");
         setPreFilledValues(sqLiteDatabase);
@@ -180,7 +184,28 @@ public class DBHELPER extends SQLiteOpenHelper {
     {
         List<BookingModel> bookingModelList=new ArrayList<>();
         SQLiteDatabase db =this.getReadableDatabase();
-        String query = "select departure,arrival,price,booking_date from bookings where ifnull(is_deleted,0)=0";
+        String query = "select departure,arrival,price,booking_date from bookings where  ifnull(is_deleted,0)=0";
+        Cursor c = db.rawQuery(query, null);
+        if(c.getCount()>0 && c.moveToFirst()) {
+            do {
+                BookingModel bookingModel=new BookingModel();
+                bookingModel.setArrival(c.getString(c.getColumnIndex("arrival")));
+                bookingModel.setDeparture(c.getString(c.getColumnIndex("departure")));
+                bookingModel.setDateOfBooking(c.getString(c.getColumnIndex("booking_date")));
+                bookingModel.setPrice(c.getString(c.getColumnIndex("price")));
+                bookingModelList.add(bookingModel);
+            }
+
+            while(c.moveToNext());
+        }
+        c.close();
+        return bookingModelList;
+    }
+    public List<BookingModel> getAllCancelTickets()
+    {
+        List<BookingModel> bookingModelList=new ArrayList<>();
+        SQLiteDatabase db =this.getReadableDatabase();
+        String query = "select departure,arrival,price,booking_date from bookings where is_deleted=1";
         Cursor c = db.rawQuery(query, null);
         if(c.getCount()>0 && c.moveToFirst()) {
             do {
@@ -231,10 +256,13 @@ public class DBHELPER extends SQLiteOpenHelper {
 
         return result;
     }
-    public void saveBooking(String selectedDeparture, String selectedArrival, String selectedDate, String fare)
+    public void saveBooking(String selectedDeparture, String selectedArrival, String selectedDate, String fare,String phone_number)
     {
+
+        String imgSett = sharedPreferences.getString("phone_number", "");
         SQLiteDatabase db = this.getWritableDatabase();
-        String query="insert into bookings(departure,arrival,booking_date,price) values('"+selectedDeparture+"','"+selectedArrival+"','"+selectedDate+"','"+fare+"')";
+        String query="insert into bookings(departure,arrival,booking_date,price,phone_number) values('"+selectedDeparture+"','"+selectedArrival+"','"+selectedDate+"','"+fare+"'" +
+                "'"+phone_number+"')";
         db.execSQL(query);
     }
 

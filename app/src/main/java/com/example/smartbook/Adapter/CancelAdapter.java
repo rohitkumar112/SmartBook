@@ -24,6 +24,7 @@ public class CancelAdapter extends RecyclerView.Adapter<CancelAdapter.viewholder
     Context context;
     List<BookingModel> bookingModelList;
     DBHELPER db;
+    String cameFrom="";
     @NonNull
     @Override
     public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -32,11 +33,12 @@ public class CancelAdapter extends RecyclerView.Adapter<CancelAdapter.viewholder
 
         return new viewholder(view);
     }
-    public CancelAdapter(Context context, List<BookingModel> bookingModelList,DBHELPER db)
+    public CancelAdapter(Context context, List<BookingModel> bookingModelList,DBHELPER db,String cameFrom)
     {
         this.context=context;
         this.bookingModelList=bookingModelList;
         this.db=db;
+        this.cameFrom=cameFrom;
     }
 
     @Override
@@ -51,6 +53,10 @@ public class CancelAdapter extends RecyclerView.Adapter<CancelAdapter.viewholder
         holder.total_fare.setText(bookingModelList.get(position).getPrice());
         holder.book.setVisibility(View.GONE);
         holder.cancel.setVisibility(View.VISIBLE);
+        if(cameFrom.equals(""))
+        {
+
+
         holder.cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +81,7 @@ public class CancelAdapter extends RecyclerView.Adapter<CancelAdapter.viewholder
 
             }
         });
-
+        }
     }
 
 

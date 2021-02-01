@@ -3,6 +3,7 @@ package com.example.smartbook;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,6 +24,9 @@ import com.example.smartbook.Utils.Utility;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.smartbook.Activities.LoginActivity.MyPREFERENCES;
+import static com.example.smartbook.Activities.LoginActivity.sharedPreferences;
+
 public class BookTicket extends AppCompatActivity {
     Button submit,calculateFare;
     Spinner medium,departure,arrival;
@@ -33,11 +37,14 @@ public class BookTicket extends AppCompatActivity {
     EditText select_date;
     Button logout;
     TextView name,phone_number;
+    String phone_numbers;
     TextView departure_error,arrival_error,medium_error,date_error;
     ArrayAdapter<String> medium_adapter,departure_adapter,arrival_adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        phone_numbers = sharedPreferences.getString("phone_number", "");
         setContentView(R.layout.activity_book_ticket);
         submit=findViewById(R.id.submit);
         select_date=findViewById(R.id.select_date);
@@ -154,7 +161,7 @@ public class BookTicket extends AppCompatActivity {
 
                         @Override
                         public void onDone() {
-                            db.saveBooking(selectedDeparture, selectedArrival, selectedDate,fare);
+                            db.saveBooking(selectedDeparture, selectedArrival, selectedDate,fare,phone_numbers);
                             Toast.makeText(BookTicket.this,"Successfully Booked",Toast.LENGTH_SHORT).show();
                         }
                     });

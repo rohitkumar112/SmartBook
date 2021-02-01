@@ -3,6 +3,7 @@ package com.example.smartbook;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,9 @@ import com.example.smartbook.Utils.Utility;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.smartbook.Activities.LoginActivity.MyPREFERENCES;
+import static com.example.smartbook.Activities.LoginActivity.sharedPreferences;
+
 public class CalculateFare extends AppCompatActivity {
     Button submit,calculateFare;
     Spinner medium,departure,arrival;
@@ -34,12 +38,15 @@ public class CalculateFare extends AppCompatActivity {
     EditText select_date;
     Button logout;
     TextView name,phone_number;
+   String phone_numbers;
     TextView departure_error,arrival_error,medium_error,date_error;
     ArrayAdapter<String> medium_adapter,departure_adapter,arrival_adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculate_fare);
+        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        phone_numbers = sharedPreferences.getString("phone_number", "");
         select_date=findViewById(R.id.select_date);
         departure_error=findViewById(R.id.departure_error);
         arrival_error=findViewById(R.id.arrival_error);
@@ -154,7 +161,7 @@ public class CalculateFare extends AppCompatActivity {
 
                         @Override
                         public void onDone() {
-                            db.saveBooking(selectedDeparture, selectedArrival, selectedDate,fare);
+                            db.saveBooking(selectedDeparture, selectedArrival, selectedDate,fare,phone_numbers);
                             Toast.makeText(CalculateFare.this,"Successfully Booked",Toast.LENGTH_SHORT).show();
                         }
                     });

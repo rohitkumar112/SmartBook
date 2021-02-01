@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -31,6 +32,7 @@ import com.example.smartbook.Dialog.exitDialog;
 import com.example.smartbook.Interfaces.DIalogListener;
 import com.example.smartbook.R;
 import com.example.smartbook.Utils.Utility;
+import com.example.smartbook.cancelTicketHistory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,14 +53,31 @@ public class MapsActivity extends AppCompatActivity {
     Button logout;
     TextView name,phone_number;
     TextView departure_error,arrival_error,medium_error,date_error;
-    LinearLayout calculate_fare_layout,cancel_ticket_layout,book_ticket;
+    LinearLayout calculate_fare_layout,cancel_ticket_layout,book_ticket,cancel_ticket_history;
     ArrayAdapter<String> medium_adapter,departure_adapter,arrival_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        name=findViewById(R.id.name);
+        phone_number=findViewById(R.id.phone_number);
+//        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+//        (sharedPreferences.getString(phone_number, ""));
+        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        String imgSett = sharedPreferences.getString("phone_number", "");
+        String nameFrom=sharedPreferences.getString("name", "");
+        phone_number.setText(imgSett);
+        name.setText(nameFrom);
         logout=findViewById(R.id.logout);
+        cancel_ticket_history=findViewById(R.id.cancel_ticket_history);
+        cancel_ticket_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MapsActivity.this, cancelTicketHistory.class);
+                startActivity(intent);
+            }
+        });
         book_ticket=findViewById(R.id.book_ticket);
         book_ticket.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,8 +102,8 @@ public class MapsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        name=findViewById(R.id.name);
-        phone_number=findViewById(R.id.phone_number);
+
+
         select_date=findViewById(R.id.select_date);
         departure_error=findViewById(R.id.departure_error);
         arrival_error=findViewById(R.id.arrival_error);
@@ -122,7 +141,7 @@ public class MapsActivity extends AppCompatActivity {
         arrival.setAdapter(arrival_adapter);
         departure.setAdapter(departure_adapter);
 
-        sharedPreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
         onClickListener();
         logout=findViewById(R.id.logout);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -237,7 +256,7 @@ public class MapsActivity extends AppCompatActivity {
 
                         @Override
                         public void onDone() {
-                            db.saveBooking(selectedDeparture, selectedArrival, selectedDate,fare);
+//                            db.saveBooking(selectedDeparture, selectedArrival, selectedDate,fare);
                             Toast.makeText(MapsActivity.this,"Successfully Booked",Toast.LENGTH_SHORT).show();
                         }
                     });

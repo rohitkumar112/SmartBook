@@ -63,6 +63,7 @@ public class Registration extends AppCompatActivity implements TextWatcher {
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putString("phone_number", phone_number.getText().toString());
                         editor.putString("password", password.getText().toString());
+                        editor.putString("name",name.getText().toString());
                         editor.commit();
                     }
                     else
