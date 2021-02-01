@@ -57,18 +57,25 @@ public class CancelAdapter extends RecyclerView.Adapter<CancelAdapter.viewholder
                 cancelTicketDialog canceldialog=new cancelTicketDialog(context, new DIalogListener() {
                     @Override
                     public void onDismiss() {
-                        db.deleteBooking(departure,arrival,dateOfBooking,totalFare);
+
+                        notifyDataSetChanged();
                     }
 
                     @Override
                     public void onDone() {
+                        db.deleteBooking(departure,arrival,dateOfBooking,totalFare);
+                        notifyDataSetChanged();
 
                     }
                 });
-                db.deleteBooking(departure,arrival,dateOfBooking,totalFare);
-                notifyDataSetChanged();
+                canceldialog.setCancelable(false);
+                canceldialog.setCanceledOnTouchOutside(false);
+                canceldialog.show();
+//                db.deleteBooking(departure,arrival,dateOfBooking,totalFare);
+
             }
         });
+
     }
 
 
